@@ -103,7 +103,7 @@ const page = () => {
           key={index}
           className=" d-flex align-items-stretch col-4 p-3"
         >
-          <div className="card bg-white text-white w-100 d-flex flex-column border-0 rounded-0">
+          <div className="card bg-white text-white w-100 d-flex flex-column border-0  rounded-0">
             <div className='service-image p-3'>
               <img src={item.img} className="card-img-top rounded-0" alt={item.title} />
             </div>
