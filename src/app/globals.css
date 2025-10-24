@@ -1,0 +1,90 @@
+:root{
+  --primary-color: #CB3A1A;
+  --secondary-color: #111111;
+  --para-color:#74787C;
+
+}
+
+body{
+  font-family: Jost;
+}
+
+h1{
+  font-size: 66px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
+
+h2{
+  font-size: 48px !important;
+  text-transform: uppercase;
+}
+
+.para{
+  color: var(--para-color);
+}
+.nav-outer{
+  background-color: var(--secondary-color);
+  text-transform: uppercase !important;
+}
+
+
+.navBtn{
+  border: 1px solid var(--primary-color);
+  color: white;
+  height: 50px;
+}
+
+.herosection {
+  position: relative;
+  background-image: url("https://png.pngtree.com/background/20231030/original/pngtree-3d-render-of-a-charming-cafe-or-restaurant-picture-image_5788105.jpg");
+  background-size: cover;
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.herosection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.725); /* light black */
+  z-index: 2;
+}
+
+.herosection > * {
+  position: relative;
+  z-index: 3; /* keeps content above the overlay */
+}
+
+ .our-services{
+   background-color: #FAF4EE;
+ }
+
+ .service-image{
+  height: 60%;
+    display: flex
+ }
+ .card-img-top{
+  object-fit: cover;
+ }
+
+ .subtitle{
+  padding: 7px 25px;
+  background-color: var(--primary-color);
+  color: white;
+  width: fit-content;
+  display: flex;
+  justify-self: center;
+  font-size: 18px;
+  border-radius: 3px;
+
+ }
