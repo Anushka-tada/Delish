@@ -51,6 +51,65 @@ const chefs = [
   },
 ];
 
+const foods = [
+  {
+    name: "Classic Caesar Salad",
+    category: "Lunch",
+    img: "https://feelgoodfoodie.net/wp-content/uploads/2020/04/Caesar-Salad-TIMG.jpg",
+    price:"$15.00"
+  },
+  {
+  name: "Spaghetti Aglio",
+  category: "Dinner",
+  img: "https://walkingthroughlavenderfields.com/wp-content/uploads/2022/09/aglio-e-olio-e-peperoncino-01.jpeg",
+   price:"$18.00"
+},
+
+  {
+    name: "Chocolate Lava Cake",
+    category: "Dessert",
+    img: "https://www.verybestbaking.com/sites/g/files/jgfbjl326/files/styles/large/public/recipe-thumbnail/116744-bd4b61de9035d59377d72c224a320cbd_Lava_Cake.jpg?itok=k_dLaW-U",
+     price:"$25.00"
+  },
+  {
+    name: "Alfredo Pasta",
+    category: "Dinner",
+    img: "https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg",
+     price:"$23.00"
+  },
+  {
+    name: "Margherita Pizza",
+    category: "All",
+    img: "https://grandecheese.com/wp-content/uploads/2025/02/Margherita-Pizza-deck-oven.jpg.webp",
+     price:"$15.00"
+  },
+  {
+    name: "Vegetable Biryani",
+    category: "Lunch",
+    img: "https://www.indianveggiedelight.com/wp-content/uploads/2020/04/veg-biryani-instant-pot.jpg",
+     price:"$15.00"
+  },
+  {
+    name: "Paneer Butter Masala",
+    category: "Dinner",
+    img: "https://www.ruchiskitchen.com/wp-content/uploads/2020/12/Paneer-butter-masala-recipe-3-500x500.jpg",
+     price:"$12.00"
+  },
+  {
+    name: "Avocado Toast",
+    category: "Breakfast",
+    img: "https://allnutritionkitchen.com/wp-content/uploads/2024/06/avocado-cottage-cheese-toast.jpg",
+     price:"$24.00"
+  },
+  // {
+  //   name: "Veg Club Sandwich",
+  //   category: "Lunch",
+  //   img: "https://static.toiimg.com/thumb/83740315.cms?imgsize=361903&width=800&height=800",
+  //    price:"$21.00"
+  // }
+
+];
+
 
 const page = () => {
 
@@ -189,17 +248,65 @@ const page = () => {
 
 
        <div className='container py-5 my-5'>
-     <div className='row align-items-center'>
+     <div className='d-flex align-items-center justify-content-between'>
     <div className=''>
-         <h6 className='subtitle'>
-              Our Team
+         <h6 className='subtitle' style={{justifySelf:"start"}}>
+              Food Menu
              </h6>
 
-             <h2 className='text-uppercase mb-4 fw-bold text-center'>OUr Popular chefs</h2>
-             
-             
+             <h2 className='text-uppercase mb-4 fw-bold '>Our delicious food</h2>
+       </div>
+       
+         <div className='d-flex gap-2'>
+          <div className='navBtn px-3 d-flex justify-content-center gap-3 align-items-center ' style={{width:"fit-content" , height:"41px"}}>
+            <p className='mb-0 text-danger fw-semibold text-uppercase'>All Food</p>
+      
+           </div>
 
-    </div>
+            <div className='navBtn px-3 d-flex justify-content-center gap-3 align-items-center ' style={{width:"fit-content" , height:"41px"}}>
+            <p className='mb-0 text-black fw-semibold text-uppercase'>Breakfast</p>
+           </div>
+
+            <div className='navBtn px-3 d-flex justify-content-center gap-3 align-items-center ' style={{width:"fit-content" , height:"41px"}}>
+            <p className='mb-0 text-black fw-semibold text-uppercase'>Lunch</p>
+           </div>
+
+            <div className='navBtn px-3 d-flex justify-content-center gap-3 align-items-center ' style={{width:"fit-content" , height:"41px"}}>
+            <p className='mb-0 text-black fw-semibold text-uppercase'>Dinner</p>
+           </div>
+         </div>
+
+     </div>
+
+     <div className='row'>
+      <div className='col-4'>
+         
+      </div>
+      <div className='col-8'>
+        <div className='row'>
+         {
+              foods.map((food , index) => (
+                 <div
+          key={index}
+          className=" d-flex col-3 p-3"
+        >
+          <div className="card bg-black text-white w-100 d-flex flex-column border-0  rounded-0">
+            <div className='service-image' style={{height:"82%" , maxHeight:"360px"}}>
+              <img src={food.img} className="card-img-top rounded-0" alt={food.name} />
+            </div>
+            <div className="card-body d-flex flex-column px-4 pb-4">
+              <h5 className="card-title fw-semibold text-white text-uppercase">{food?.name}</h5>
+              <p className="card-text  para">{food?.price}</p>
+
+             
+            </div>
+          </div>
+        </div>
+              ))
+             }
+        </div>
+
+      </div>
      </div>
      </div>
 
