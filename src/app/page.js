@@ -200,49 +200,15 @@ const page = () => {
            </div>
             </div>
           </div>
+
+
         </div>
       ))}
     </div>
        </div>
        </div>
 
-       {/* our team */}
-
-        <div className='container py-5 my-5'>
-     <div className='row align-items-center'>
-    <div className=''>
-         <h6 className='subtitle'>
-              Our Team
-             </h6>
-
-             <h2 className='text-uppercase mb-4 fw-bold text-center'>OUr Popular chefs</h2>
-             
-             <div className='chefs row'>
-             {
-              chefs.map((chef , index) => (
-                 <div
-          key={index}
-          className=" d-flex col-3 p-3"
-        >
-          <div className="card bg-black text-white w-100 d-flex flex-column border-0  rounded-0">
-            <div className='service-image' style={{height:"82%" , maxHeight:"360px"}}>
-              <img src={chef.img} className="card-img-top rounded-0" alt={chef.name} />
-            </div>
-            <div className="card-body d-flex flex-column px-4 pb-4">
-              <h5 className="card-title fw-semibold text-white text-uppercase">{chef?.name}</h5>
-              <p className="card-text  para">{chef?.post}</p>
-
-             
-            </div>
-          </div>
-        </div>
-              ))
-             }
-             </div>
-
-    </div>
-     </div>
-     </div>
+       
 
      {/* our food */}
 
@@ -280,25 +246,74 @@ const page = () => {
 
      <div className='row'>
       <div className='col-4'>
-         
+          <div className='p-3'  style={{backgroundColor:"#f4f4f4"}}>
+              <div>
+                   <div className='service-image mb-3' style={{height:"32%" , maxHeight:"215px" , minHeight:"215px"}}>
+              <img src="https://images.immediate.co.uk/production/volatile/sites/30/2022/08/Alfredo-dc662e3.jpg" className="card-img-top rounded-0"  />
+            </div>
+
+            <div className='d-flex justify-content-between align-items-start border-bottom pb-2 mb-2'>
+               <div>
+                <h5 className='mb-2'>Braised Short Ribs</h5>
+               <p className=' fs-6 para'> lorem spum fd uidds ssdd kllss pewer
+               </p>
+               </div>
+               <p className=' fw-semibold text-danger'>$15.00</p>
+            </div>
+
+             <div className='d-flex justify-content-between align-items-start border-bottom pb-2 mb-2'>
+               <div>
+                <h5 className='mb-2'>Braised Short Ribs</h5>
+               <p className=' fs-6 para'> lorem spum fd uidds ssdd kllss pewer
+               </p>
+               </div>
+               <p className=' fw-semibold text-danger'>$15.00</p>
+            </div>
+
+             <div className='d-flex justify-content-between align-items-start border-bottom pb-2 mb-2'>
+               <div>
+                <h5 className='mb-2'>Braised Short Ribs</h5>
+               <p className=' fs-6 para'> lorem spum fd uidds ssdd kllss pewer
+               </p>
+               </div>
+               <p className=' fw-semibold text-danger'>$15.00</p>
+            </div>
+
+             <div className='d-flex justify-content-between align-items-start border-bottom pb-2 mb-2'>
+               <div>
+                <h5 className='mb-2'>Braised Short Ribs</h5>
+               <p className=' fs-6 para'> lorem spum fd uidds ssdd kllss pewer
+               </p>
+               </div>
+               <p className=' fw-semibold text-danger'>$15.00</p>
+            </div>
+
+             <div className='d-flex justify-content-between align-items-start border-bottom pb-2 mb-2'>
+               <div>
+                <h5 className='mb-2'>Braised Short Ribs</h5>
+               <p className=' fs-6 para'> lorem spum fd uidds ssdd kllss pewer
+               </p>
+               </div>
+               <p className=' fw-semibold text-danger'>$15.00</p>
+            </div>
+              </div>
+          </div>
       </div>
       <div className='col-8'>
-        <div className='row'>
+        <div className='row p-3 ' style={{backgroundColor:"#f4f4f4"}}>
          {
               foods.map((food , index) => (
                  <div
           key={index}
-          className=" d-flex col-3 p-3"
+          className=" d-flex col-3 p-2"
         >
-          <div className="card bg-black text-white w-100 d-flex flex-column border-0  rounded-0">
-            <div className='service-image' style={{height:"82%" , maxHeight:"360px"}}>
+          <div className="card text-white w-100 d-flex flex-column border-0  rounded-0">
+            <div className='service-image' style={{height:"82%" , maxHeight:"215px" , minHeight:"215px"}}>
               <img src={food.img} className="card-img-top rounded-0" alt={food.name} />
             </div>
             <div className="card-body d-flex flex-column px-4 pb-4">
-              <h5 className="card-title fw-semibold text-white text-uppercase">{food?.name}</h5>
-              <p className="card-text  para">{food?.price}</p>
-
-             
+              <h6 className="card-title fw-semibold  text-black  text-center">{food?.name}</h6>
+              <p className="card-text text-danger text-center">{food?.price}</p>
             </div>
           </div>
         </div>
@@ -309,6 +324,114 @@ const page = () => {
       </div>
      </div>
      </div>
+
+     {/* our team */}
+        
+        <div className='our-team'>
+        <div className='container py-5 my-5'>
+     <div className='row align-items-center'>
+    <div className=''>
+         <h6 className='subtitle'>
+              Our Team
+             </h6>
+
+             <h2 className='text-uppercase mb-4 fw-bold text-center'>OUr Popular chefs</h2>
+             
+             <div className='chefs row'>
+             {
+              chefs.map((chef , index) => (
+                 <div
+          key={index}
+          className=" d-flex col-3 p-3"
+        >
+          <div className="card bg-black text-white w-100 d-flex flex-column border-0  rounded-0">
+            <div className='service-image' style={{height:"82%" , maxHeight:"360px"}}>
+              <img src={chef.img} className="card-img-top rounded-0" alt={chef.name} />
+            </div>
+            <div className="card-body d-flex flex-column px-4 pb-4">
+              <h5 className="card-title fw-semibold text-white text-uppercase">{chef?.name}</h5>
+              <p className="card-text  para">{chef?.post}</p>
+
+             
+            </div>
+          </div>
+        </div>
+              ))
+             }
+             </div>
+
+    </div>
+     </div>
+     </div>
+     </div>
+
+     {/* clients feedback */}
+
+    
+        <div className='container py-5 my-5'>
+     <div className='row align-items-center'>
+    <div className=''>
+         <h6 className='subtitle'>
+              Clients Feedback
+             </h6>
+
+             <h2 className='text-uppercase mb-4 fw-bold text-center'>What our customers says</h2>
+             
+             <div className='row justify-content-center'>
+              <div className='col-5 p-3'>
+                <div className='client-card d-flex gap-3 p-3' style={{backgroundColor:"#ffefef"}}>
+                 <div>
+                  <img src='https://img.freepik.com/free-photo/indian-woman-posing-cute-stylish-outfit-camera-smiling_482257-122351.jpg?semt=ais_hybrid&w=740&q=80' className='img-fluid mb-3' style={{maxHeight:"165px"}}></img>
+
+                  <img src='/assets/star.png'></img>
+
+                 </div>
+                 <div>
+                  <p>The scallops were perfectly cooked, tender, and flavorful, paired beautifully with a creamy risotto and seasonal vegetables. The presentation was artful, showcasing the chef's attention to detail.  highly recommend it for anyone looking for a memorable dining experience.</p>
+
+                 <div className='d-flex justify-content-between'>
+                   <div>
+                    <h5 className='fw-bold text-uppercase '>kuman tunman</h5>
+                  <p className='para fs-6 mb-0 '>Waiter</p>
+                   </div>
+                   <img src='/assets/quotes.png' style={{height:"33px"}}></img>
+                 </div>
+                 </div>
+                </div>
+                
+
+              </div>
+
+              <div className='col-5 p-3'>
+                <div className='client-card d-flex gap-3 p-3' style={{backgroundColor:"#ffefef"}}>
+                 <div>
+                  <img src='https://thumbs.dreamstime.com/b/smart-smiling-middle-aged-indian-business-man-26978835.jpg' className='img-fluid mb-3' style={{maxHeight:"165px"}}></img>
+
+                  <img src='/assets/star.png'></img>
+
+                 </div>
+                 <div>
+                  <p>The scallops were perfectly cooked, tender, and flavorful, paired beautifully with a creamy risotto and seasonal vegetables. The presentation was artful, showcasing the chef's attention to detail.  highly recommend it for anyone looking for a memorable dining experience.</p>
+
+                 <div className='d-flex justify-content-between'>
+                   <div>
+                    <h5 className='fw-bold text-uppercase '>kuman tunman</h5>
+                  <p className='para fs-6 mb-0 '>Waiter</p>
+                   </div>
+                   <img src='/assets/quotes.png' style={{height:"33px"}}></img>
+                 </div>
+                 </div>
+                </div>
+                
+
+              </div>
+            
+             </div>
+
+    </div>
+     </div>
+     </div>
+    
 
      
     </div>
