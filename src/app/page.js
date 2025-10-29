@@ -7,6 +7,7 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import Footer from './components/Footer';
 // import './slider.css';
 
 const data = [
@@ -127,7 +128,7 @@ const page = () => {
 
       {/* herosection */}
 
-     <div className='herosection'>
+     <div className='herosection' style={{marginTop:"82px"}}>
         <div className='container text-white'>
             <h2>The Great</h2>
             <h1>Flavored Food</h1>
@@ -150,11 +151,11 @@ const page = () => {
 
      <div className='container py-5 my-5'>
      <div className='row align-items-center'>
-    <div className='col-6'>
+    <div className='col-md-6  order-2 order-md-1'>
       <img src='https://www.oberoihotels.com/-/media/oberoi-hotel/the-oberoi-gurgaon/gurgaon-resized/ziya/820x646/evening_shot_at_ziya_gurgaon.jpg' className='img-fluid'></img>
     </div>
 
-    <div className='col-6 ps-5'>
+    <div className='col-md-6 mb-5 mb-md-0 ps-5 order-1 order-md-2'>
          <h6 className='subtitle' style={{justifySelf:"start"}}>
               Reservation
              </h6>
@@ -184,7 +185,7 @@ const page = () => {
       {data.map((item, index) => (
         <div
           key={index}
-          className=" d-flex align-items-stretch col-4 p-3"
+          className=" d-flex align-items-stretch col-lg-4 col-sm-6 col-12 p-3"
         >
           <div className="card bg-white text-white w-100 d-flex flex-column border-0  rounded-0">
             <div className='service-image p-3'>
@@ -214,7 +215,7 @@ const page = () => {
 
 
        <div className='container py-5 my-5'>
-     <div className='d-flex align-items-center justify-content-between'>
+     <div className='d-flex flex-wrap align-items-center justify-content-between'>
     <div className=''>
          <h6 className='subtitle' style={{justifySelf:"start"}}>
               Food Menu
@@ -223,7 +224,7 @@ const page = () => {
              <h2 className='text-uppercase mb-4 fw-bold '>Our delicious food</h2>
        </div>
        
-         <div className='d-flex gap-2'>
+         <div className='d-flex flex-wrap  gap-2'>
           <div className='navBtn px-3 d-flex justify-content-center gap-3 align-items-center ' style={{width:"fit-content" , height:"41px"}}>
             <p className='mb-0 text-danger fw-semibold text-uppercase'>All Food</p>
       
@@ -245,7 +246,7 @@ const page = () => {
      </div>
 
      <div className='row'>
-      <div className='col-4'>
+      <div className='col-md-4 d-md-block d-none'>
           <div className='p-3'  style={{backgroundColor:"#f4f4f4"}}>
               <div>
                    <div className='service-image mb-3' style={{height:"32%" , maxHeight:"215px" , minHeight:"215px"}}>
@@ -299,13 +300,13 @@ const page = () => {
               </div>
           </div>
       </div>
-      <div className='col-8'>
+      <div className='col-md-8'>
         <div className='row p-3 ' style={{backgroundColor:"#f4f4f4"}}>
          {
               foods.map((food , index) => (
                  <div
           key={index}
-          className=" d-flex col-3 p-2"
+          className=" d-flex col-lg-3 col-sm-6 col-12 p-2"
         >
           <div className="card text-white w-100 d-flex flex-column border-0  rounded-0">
             <div className='service-image' style={{height:"82%" , maxHeight:"215px" , minHeight:"215px"}}>
@@ -342,7 +343,7 @@ const page = () => {
               chefs.map((chef , index) => (
                  <div
           key={index}
-          className=" d-flex col-3 p-3"
+          className=" d-flex col-lg-3 col-md-4 col-sm-6 col-12 p-3"
         >
           <div className="card bg-black text-white w-100 d-flex flex-column border-0  rounded-0">
             <div className='service-image' style={{height:"82%" , maxHeight:"360px"}}>
@@ -378,7 +379,7 @@ const page = () => {
              <h2 className='text-uppercase mb-4 fw-bold text-center'>What our customers says</h2>
              
              <div className='row justify-content-center'>
-              <div className='col-5 p-3'>
+              <div className='col-lg-5 col-md-6 col-12 p-3'>
                 <div className='client-card d-flex gap-3 p-3' style={{backgroundColor:"#ffefef"}}>
                  <div>
                   <img src='https://img.freepik.com/free-photo/indian-woman-posing-cute-stylish-outfit-camera-smiling_482257-122351.jpg?semt=ais_hybrid&w=740&q=80' className='img-fluid mb-3' style={{maxHeight:"165px"}}></img>
@@ -402,7 +403,7 @@ const page = () => {
 
               </div>
 
-              <div className='col-5 p-3'>
+              <div className='col-lg-5 col-md-6 col-12 p-3'>
                 <div className='client-card d-flex gap-3 p-3' style={{backgroundColor:"#ffefef"}}>
                  <div>
                   <img src='https://thumbs.dreamstime.com/b/smart-smiling-middle-aged-indian-business-man-26978835.jpg' className='img-fluid mb-3' style={{maxHeight:"165px"}}></img>
@@ -432,6 +433,7 @@ const page = () => {
      </div>
      </div>
     
+    <Footer/>
 
      
     </div>

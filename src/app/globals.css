@@ -2,7 +2,6 @@
   --primary-color: #CB3A1A;
   --secondary-color: #111111;
   --para-color:#74787C;
-
 }
 
 body{
@@ -16,23 +15,93 @@ h1{
 }
 
 h2{
-  font-size: 48px !important;
+  font-size: 47px !important;
   text-transform: uppercase;
 }
 
+@media(max-width:1024px) {
+  h1{
+  font-size: 60px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
+h2{
+  font-size: 41px !important;
+  text-transform: uppercase;
+}
+}
+
+@media(max-width:768px) {
+  h1{
+  font-size: 50px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
+h2{
+  font-size: 30px !important;
+  text-transform: uppercase;
+}
+}
+
+@media(max-width:578px) {
+  h1{
+  font-size: 30px !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
+h2{
+  font-size: 20px !important;
+  text-transform: uppercase;
+}
+}
 .para{
   color: var(--para-color);
 }
-.nav-outer{
+.nav-outer {
+  z-index: 6;
   background-color: var(--secondary-color);
   text-transform: uppercase !important;
 }
 
-
-.navBtn{
+.navBtn {
   border: 1px solid var(--primary-color);
   color: white;
   height: 50px;
+  cursor: pointer;
+}
+
+.navbar-toggler-icon {
+  filter: invert(1); 
+}
+
+/* Offcanvas Styling */
+.offcanvas {
+  background-color: var(--secondary-color);
+  color: white;
+}
+
+.offcanvas .nav-link {
+  color: rgb(0, 0, 0) !important;
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.offcanvas .nav-link:hover {
+  color: var(--primary-color) !important;
+  transition: 0.3s;
+}
+
+
+.offcanvas-backdrop,
+.offcanvas-backdrop.show {
+  backdrop-filter: none !important;
+  background-color: rgba(0, 0, 0, 0.5) !important; /* normal dim effect */
+}
+
+.offcanvas-backdrop, .offcanvas-backdrop.show {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    background-color: rgb(255 255 255 / 0%) !important;
 }
 
 .herosection {
@@ -86,7 +155,6 @@ h2{
   justify-self: center;
   font-size: 18px;
   border-radius: 3px;
-
  }
 
  .our-team{
@@ -102,7 +170,23 @@ h2{
   position: absolute;
   bottom: 0;
  }
-
  .our-team .card{
    z-index: 5;
+ }
+
+ .newletter-input{
+  background-color: #282828;
+  border: none;
+  outline: none;
+  padding: 12px 7px 12px 30px;
+  width: 100%;
+  margin-top: 13px;
+ }
+
+ .border-botom{
+   border-bottom: 1px solid #303030 !important;
+ }
+
+ .footer-top{
+  background-color: #ebebeb;
  }
