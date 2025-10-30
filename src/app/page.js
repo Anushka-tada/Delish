@@ -128,14 +128,14 @@ const page = () => {
 
       {/* herosection */}
 
-     <div className='herosection' style={{marginTop:"82px"}}>
+     <div className='herosection'>
         <div className='container text-white'>
             <h2>The Great</h2>
             <h1>Flavored Food</h1>
             <div className='d-flex gap-3 align-items-center justify-content-center'>
-              <img src='/assets/white_line.png' style={{height:"1px"}}></img>
+              <img src='/assets/white_line.png' style={{height:"1px"}} className='hero-line'></img>
               <h2>Part Of Us</h2>
-               <img src='/assets/white_line.png' style={{height:"1px"}}></img>
+               <img src='/assets/white_line.png' style={{height:"1px"}} className='hero-line'></img>
             </div>
 
             <div className="d-flex gap-4 justify-content-center mt-4">
@@ -149,13 +149,13 @@ const page = () => {
 
      {/* reservation */}
 
-     <div className='container py-5 my-5'>
+     <div className='container py-5 my-sm-5 my-4'>
      <div className='row align-items-center'>
     <div className='col-md-6  order-2 order-md-1'>
       <img src='https://www.oberoihotels.com/-/media/oberoi-hotel/the-oberoi-gurgaon/gurgaon-resized/ziya/820x646/evening_shot_at_ziya_gurgaon.jpg' className='img-fluid'></img>
     </div>
 
-    <div className='col-md-6 mb-5 mb-md-0 ps-5 order-1 order-md-2'>
+    <div className='col-md-6 mb-5 mb-md-0 ps-md-5 order-1 order-md-2'>
          <h6 className='subtitle' style={{justifySelf:"start"}}>
               Reservation
              </h6>
@@ -173,7 +173,7 @@ const page = () => {
 
      {/* slider */}
        
-       <div className='our-services py-5'>
+       <div className='our-services py-sm-5 '>
 <div className='container py-5 '>
              <h6 className='subtitle'>
               Our Services
@@ -214,7 +214,7 @@ const page = () => {
      {/* our food */}
 
 
-       <div className='container py-5 my-5'>
+       <div className='container py-5 my-sm-5'>
      <div className='d-flex flex-wrap align-items-center justify-content-between'>
     <div className=''>
          <h6 className='subtitle' style={{justifySelf:"start"}}>
@@ -380,8 +380,8 @@ const page = () => {
              
              <div className='row justify-content-center'>
               <div className='col-lg-5 col-md-6 col-12 p-3'>
-                <div className='client-card d-flex gap-3 p-3' style={{backgroundColor:"#ffefef"}}>
-                 <div>
+                <div className='client-card d-flex flex-wrap gap-3 p-3' style={{backgroundColor:"#ffefef"}}>
+                 <div className='d-flex flex-column'>
                   <img src='https://img.freepik.com/free-photo/indian-woman-posing-cute-stylish-outfit-camera-smiling_482257-122351.jpg?semt=ais_hybrid&w=740&q=80' className='img-fluid mb-3' style={{maxHeight:"165px"}}></img>
 
                   <img src='/assets/star.png'></img>
@@ -404,8 +404,8 @@ const page = () => {
               </div>
 
               <div className='col-lg-5 col-md-6 col-12 p-3'>
-                <div className='client-card d-flex gap-3 p-3' style={{backgroundColor:"#ffefef"}}>
-                 <div>
+                <div className='client-card d-flex flex-wrap gap-3 p-3' style={{backgroundColor:"#ffefef"}}>
+                 <div className='d-flex flex-column'>
                   <img src='https://thumbs.dreamstime.com/b/smart-smiling-middle-aged-indian-business-man-26978835.jpg' className='img-fluid mb-3' style={{maxHeight:"165px"}}></img>
 
                   <img src='/assets/star.png'></img>

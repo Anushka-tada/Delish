@@ -5,10 +5,10 @@ const Footer = () => {
 
     <>
     <div className="py-5 mt-5 footer-top">
-      <div className="d-flex flex-wrap justify-content-between container align-items-center">
+      <div className="d-flex flex-wrap justify-content-sm-between justify-content-center container align-items-center">
        <div>
-        <h6 className="mb-2 ">Book A Table For Your and Family Members</h6>
-        <h2 className="text-uppercase">Need a table on coffee house</h2>
+        <h6 className="mb-2 text-sm-start text-center">Book A Table For Your and Family Members</h6>
+        <h2 className="text-uppercase text-sm-start text-center mb-sm-0 mb-3">Need a table on coffee house</h2>
        </div>
        
        <div className='navBtn px-3 d-flex justify-content-center gap-3 align-items-center ' style={{width:"fit-content" , height:"41px"}}>
@@ -22,7 +22,7 @@ const Footer = () => {
     <div className="footer py-5  bg-black">
       <div className="container">
       <div className="d-flex flex-wrap justify-content-between pb-4  border-botom">
-        <div>
+        <div className="mb-lg-0 mb-4">
           <img src="/assets/logo.png" className="border-botom pb-3 mb-3"></img>
           <p className="text-white mb-1">Silk St, Barbican, London E2Y, UK</p>
           <p className="text-white mb-1">+39-055-123456</p>
@@ -33,7 +33,7 @@ const Footer = () => {
 
         {/* links */}
 
-        <div>
+        <div className="mb-lg-0 mb-4">
           <h5 className="border-botom pb-3 mb-3 text-uppercase text-white">Links</h5>
           <p className="text-white mb-2">About us</p>
           <p className="text-white mb-2">Meet our Team</p>
@@ -44,7 +44,7 @@ const Footer = () => {
 
          {/* other links */}
 
-            <div>
+            <div className="mb-lg-0 mb-4">
           <h5 className="border-botom pb-3 mb-3 text-uppercase text-white" > other Links</h5>
           <p className="text-white mb-2">Careers</p>
           <p className="text-white mb-2">Creative Agency</p>
@@ -55,7 +55,7 @@ const Footer = () => {
 
         {/* newsletter */}
          
-          <div>
+          <div className="mb-lg-0 mb-4"> 
           <h5 className="border-botom pb-3 mb-3 text-uppercase text-white" >Newsletter</h5>
           <p className="text-white mb-2">Subscribe us & receive our offers and <br></br> updates your inbox directly</p>
            <div className="position-relative">

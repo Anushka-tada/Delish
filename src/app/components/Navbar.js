@@ -156,7 +156,7 @@
 
 
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 
 const Navbar = () => {
@@ -169,14 +169,33 @@ const Navbar = () => {
     { name: "Contact", link: "/contact" },
   ];
 
+    const [scrolled, setScrolled] = useState(false);
+
+    useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg nav-outer p-3 px-4 position-fixed top-0 w-100">
+      <nav
+        className={`navbar navbar-expand-lg nav-outer p-2 px-md-4 position-fixed top-0 w-100 ${
+          scrolled ? "nav-outer-scroll" : ""
+        }`}
+       >
         <div className="container-fluid d-flex justify-content-between align-items-center">
           {/* Logo */}
           <a className="navbar-brand" href="/">
-            <img src="/assets/logo.png" alt="Logo" style={{ height: "50px" }} />
+            <img src="/assets/logo.png" alt="Logo" className="nav-logo" />
           </a>
 
           {/* Hamburger Menu for Mobile */}
@@ -192,7 +211,7 @@ const Navbar = () => {
 
           {/* Desktop Nav Links */}
           <div className="collapse navbar-collapse d-none d-lg-block">
-            <ul className="navbar-nav ms-auto mb-0 d-flex gap-4 align-items-center">
+            <ul className="navbar-nav ms-auto me-auto mb-0 d-flex gap-4 align-items-center">
               {navArr.map((v, i) => (
                 <li key={i} className="nav-item">
                   <Link
