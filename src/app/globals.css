@@ -19,6 +19,16 @@ h2{
   text-transform: uppercase;
 }
 
+h3{
+  font-size: 33px !important;
+  text-transform: uppercase;
+}
+
+h4{
+  font-size: 20px !important;
+  text-transform: uppercase;
+}
+
 @media(max-width:1024px) {
   h1{
   font-size: 60px !important;
@@ -27,6 +37,11 @@ h2{
 }
 h2{
   font-size: 41px !important;
+  text-transform: uppercase;
+}
+
+h3{
+  font-size: 25px !important;
   text-transform: uppercase;
 }
 }
@@ -57,6 +72,7 @@ h2{
 .para{
   color: var(--para-color);
 }
+
 
 .nav-logo{
   height: 50px;
@@ -214,4 +230,100 @@ h2{
   padding: 6px 11px;
   font-size: 14px;
 }
+ }
+
+ /* booking page */
+
+ .booking-herosection{
+   height: 65vh;
+     margin-top: 70px;
+     background: url("https://www.oberoihotels.com/-/media/oberoi-hotel/the-oberoi-gurgaon/desktop1920x980.jpg");
+     background-size: cover;
+     background-position: center;
+ }
+
+ .booking-herosection::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+   height:100%;
+   max-height: 80vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.647); /* light black */
+  z-index: 2;
+}
+
+.booking-herosection-text{
+  z-index: 5;
+}
+
+.booking-section{
+  background-color: #6b6b6b;
+}
+.booking-form {
+  height: 75%;
+  width: 700px;
+  background-color:#000000bd;
+  z-index: 99;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+/* styles/globals.css ya component-specific CSS */
+.booking-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 30%;
+  width: 80%;
+  height: 100%;
+  background: radial-gradient(circle, rgb(255 0 0 / 13%) 0%, transparent 70%);
+  animation: moveLight 8s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+  z-index: 5;
+}
+
+@keyframes moveLight {
+  0% { transform: translateX(-50%); }
+  50% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.booking-form label{
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #d3d3d3;
+}
+
+.booking-form input , .booking-form textarea {
+  background: #d8d8d8;
+    border: 1px solid #d6d6d6;
+    border-radius: 4px;
+    padding: 5px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+}
+
+.booking-form button{
+  background-color: var(--primary-color);
+   height: 47px;
+   display: flex;
+   align-items: center;
+   color: white;
+   justify-self: center;
+   border: none;
+}
+
+/* our team */
+
+ .our-team2{
+  position: relative;
+ }
+
+
+ .our-team2 .card{
+   z-index: 5;
  }

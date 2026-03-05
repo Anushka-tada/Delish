@@ -8,6 +8,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import Footer from './components/Footer';
+import { useRouter } from 'next/navigation';
 // import './slider.css';
 
 const data = [
@@ -122,6 +123,11 @@ const page = () => {
   //   },
   // })
 
+  const router = useRouter();
+
+  const handleBookingRoute = () => {
+    router.push("/booking")
+  }
   return (
     <div>
       <Navbar/>
@@ -162,7 +168,10 @@ const page = () => {
 
              <h2 className='text-uppercase mb-4'>Welcome To our  <br></br>Luxury Restaurant</h2>
              <p className=" para mb-4">The scallops were perfectly cooked, tender, and flavorful, paired beautifully with a creamy risotto and seasonal vegetables. The presentation was artful, showcasing the chef's attention to detail.</p>
-             <div className='navBtn px-3 d-flex justify-content-center gap-3 align-items-center ' style={{width:"fit-content" , height:"41px"}}>
+             <div className='navBtn px-3 d-flex justify-content-center gap-3 align-items-center' 
+             style={{width:"fit-content" , height:"41px"}}
+             onClick={handleBookingRoute}
+             >
             <p className='mb-0 text-danger fw-semibold text-uppercase'>Book a table</p>
             <img src='/assets/red_arrow.png'></img>
            </div>
