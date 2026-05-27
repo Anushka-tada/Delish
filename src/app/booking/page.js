@@ -70,7 +70,7 @@ const page = () => {
       <div className="container py-5">
 <div className="row justify-content-center align-items-center">
             <div className="col-5">
-             <img src="/assets/opening-hours.jpg" className="img-fluid "></img>
+             <img src="/assets/resto_time.jpg" className="img-fluid "></img>
           </div>
           <div className="col-5">
             <div className="p-4 mb-4 w-fit" style={{border:"1px solid #e8e8e8", width:"fit-content", boxShadow:"rgba(0, 0, 0, 0.1) 0px 4px 12px"}}>
