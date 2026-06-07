@@ -1,47 +1,44 @@
-
 "use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { IconUser } from "@tabler/icons-react";
 
 const Navbar = () => {
+  const router = useRouter();
+
   const navArr = [
-    { name: "Home", link: "/" },
+    { name: "Home",     link: "/"         },
     { name: "Our Team", link: "/our-team" },
-    { name: "About", link: "/about-us" },
-    { name: "Booking", link: "/booking" },
-    { name: "Contact", link: "/contact" },
+    { name: "About",    link: "/about-us" },
+    { name: "Booking",  link: "/booking"  },
+    { name: "Contact",  link: "/contact"  },
   ];
 
-    const [scrolled, setScrolled] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-    useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <>
-      {/* Navbar */}
+      {/* ── Navbar ─────────────────────────────────────── */}
       <nav
         className={`navbar navbar-expand-lg nav-outer p-2 px-md-4 position-fixed top-0 w-100 ${
           scrolled ? "nav-outer-scroll" : ""
         }`}
-       >
+      >
         <div className="container-fluid d-flex justify-content-between align-items-center">
+
           {/* Logo */}
           <a className="navbar-brand" href="/">
             <img src="/assets/logo.png" alt="Logo" className="nav-logo" />
           </a>
 
-          {/* Hamburger Menu for Mobile */}
+          {/* Hamburger */}
           <button
             className="navbar-toggler border-0 text-white"
             type="button"
@@ -69,31 +66,49 @@ const Navbar = () => {
             </ul>
           </div>
 
-          {/* Right Button (Desktop only) */}
-          <div className="navBtn px-3 d-none d-lg-flex justify-content-center gap-3 align-items-center" >
-            <p className="mb-0">Book A Table</p>
-            <img src="/assets/white_arrow.png" alt="arrow" />
+          {/* Desktop Right — Book + Login */}
+          <div className="d-none d-lg-flex align-items-center gap-3">
+
+            {/* Login icon button */}
+            <button
+              className="nav-login-btn"
+              onClick={() => router.push("/login")}
+              aria-label="Login"
+            >
+              <IconUser size={18} stroke={1.8} />
+              <span>Login</span>
+            </button>
+
+            {/* Book a Table */}
+            <div
+              className="navBtn px-3 d-flex justify-content-center gap-3 align-items-center"
+              style={{ cursor: "pointer" }}
+              onClick={() => router.push("/booking")}
+            >
+              <p className="mb-0">Book A Table</p>
+              <img src="/assets/white_arrow.png" alt="arrow" />
+            </div>
+
           </div>
         </div>
       </nav>
 
-      {/* Offcanvas Menu for Mobile */}
+      {/* ── Offcanvas Mobile Menu ───────────────────────── */}
       <div
-        className="offcanvas offcanvas-end " style={{zIndex:"99"}}
+        className="offcanvas offcanvas-end"
+        style={{ zIndex: "99" }}
         tabIndex="-1"
         id="offcanvasNav"
         aria-labelledby="offcanvasNavLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasNavLabel">
-            Menu
-          </h5>
+          <h5 className="offcanvas-title" id="offcanvasNavLabel">Menu</h5>
           <button
             type="button"
             className="btn-close"
             data-bs-dismiss="offcanvas"
             aria-label="Close"
-          ></button>
+          />
         </div>
         <div className="offcanvas-body">
           <ul className="navbar-nav">
@@ -102,7 +117,7 @@ const Navbar = () => {
                 <Link
                   href={v.link}
                   className="nav-link"
-                  data-bs-dismiss="offcanvas" // closes when clicked
+                  data-bs-dismiss="offcanvas"
                   style={{
                     textDecoration: "none",
                     color: "var(--secondary-color)",
@@ -114,10 +129,31 @@ const Navbar = () => {
                 </Link>
               </li>
             ))}
+
+            {/* Login in mobile menu */}
+            <li className="nav-item mt-2">
+              <Link
+                href="/login"
+                className="nav-link d-flex align-items-center gap-2"
+                data-bs-dismiss="offcanvas"
+                style={{
+                  textDecoration: "none",
+                  color: "var(--primary-color)",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                }}
+              >
+                <IconUser size={18} stroke={1.8} />
+                Login / Sign Up
+              </Link>
+            </li>
+
             <li className="mt-3">
               <div
                 className="navBtn px-3 d-flex justify-content-center gap-3 align-items-center"
                 data-bs-dismiss="offcanvas"
+                onClick={() => router.push("/booking")}
+                style={{ cursor: "pointer" }}
               >
                 <p className="mb-0">Book A Table</p>
                 <img src="/assets/white_arrow.png" alt="arrow" />
