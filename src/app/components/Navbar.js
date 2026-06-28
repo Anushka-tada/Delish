@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IconUser } from "@tabler/icons-react";
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const router = useRouter();
@@ -22,6 +23,8 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const { isAuthenticated, user } = useSelector((state) => state.auth)
 
   return (
     <>
@@ -70,19 +73,23 @@ const Navbar = () => {
           <div className="d-none d-lg-flex align-items-center gap-3">
 
             {/* Login icon button */}
-            <button
-              className="nav-login-btn"
-              onClick={() => router.push("/login")}
-              aria-label="Login"
-            >
-              <IconUser size={18} stroke={1.8} />
-              <span>Login</span>
-            </button>
+          <button
+  className="navBtn px-3 d-flex justify-content-center gap-2 align-items-center" style={{background:"transparent"}} 
+  onClick={() =>
+    router.push(isAuthenticated ? "/profile" : "/login")
+  }
+  aria-label=""
+>
+  <IconUser size={18} stroke={1.8} />
+  <span>
+    {isAuthenticated ? "PROFILE" : "LOGIN"}
+  </span>
+</button>
 
             {/* Book a Table */}
             <div
               className="navBtn px-3 d-flex justify-content-center gap-3 align-items-center"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer" , backgroundColor:"red"}}
               onClick={() => router.push("/booking")}
             >
               <p className="mb-0">Book A Table</p>
@@ -132,7 +139,7 @@ const Navbar = () => {
 
             {/* Login in mobile menu */}
             <li className="nav-item mt-2">
-              <Link
+              {/* <Link
                 href="/login"
                 className="nav-link d-flex align-items-center gap-2"
                 data-bs-dismiss="offcanvas"
@@ -144,8 +151,13 @@ const Navbar = () => {
                 }}
               >
                 <IconUser size={18} stroke={1.8} />
-                Login / Sign Up
-              </Link>
+              {
+  isAuthenticated ? (
+  <button>Profile</button>
+  ) : (
+    <button>Login</button>
+  )}
+              </Link> */}
             </li>
 
             <li className="mt-3">

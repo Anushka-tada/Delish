@@ -1,0 +1,1 @@
+export const BASE_URL = "https://restaurent-backend-3aag.onrender.com/api"

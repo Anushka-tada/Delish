@@ -10,10 +10,13 @@ import {
   IconEyeOff,
   IconArrowRight,
 } from "@tabler/icons-react";
+import { userLoginServ, userRegisterServ } from "../../../services/auth.service";
+import { useDispatch } from "react-redux";
+import { loginSuccess } from "../../redux/authSlice";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
-// ─────────────────────────────────────────────────────────────────────
 // Variants
-// ─────────────────────────────────────────────────────────────────────
 const panelVariant = {
   hidden:  { opacity: 0, x: 32  },
   visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
@@ -28,9 +31,9 @@ const fieldVariant = {
   }),
 }
 
-// ─────────────────────────────────────────────────────────────────────
+ 
 // Reusable Input Field
-// ─────────────────────────────────────────────────────────────────────
+ 
 function AuthField({ icon, label, type = "text", name, value, onChange, index, toggleable }) {
   const [show, setShow] = useState(false)
   const [focused, setFocused] = useState(false)
@@ -79,11 +82,15 @@ function AuthField({ icon, label, type = "text", name, value, onChange, index, t
   )
 }
 
-// ─────────────────────────────────────────────────────────────────────
+ 
 // Page
-// ─────────────────────────────────────────────────────────────────────
+ 
 export default function Page() {
+
+  const router = useRouter();
+
   const [tab, setTab] = useState("login") // "login" | "signup"
+   const dispatch = useDispatch();
 
   const [loginForm,  setLoginForm]  = useState({ email: "", password: "" })
   const [signupForm, setSignupForm] = useState({ name: "", email: "", password: "" })
@@ -91,13 +98,66 @@ export default function Page() {
   const handleLogin  = e => setLoginForm(f  => ({ ...f, [e.target.name]: e.target.value }))
   const handleSignup = e => setSignupForm(f => ({ ...f, [e.target.name]: e.target.value }))
 
-  const submitLogin  = e => { e.preventDefault(); /* hook up your auth */ }
-  const submitSignup = e => { e.preventDefault(); /* hook up your auth */ }
+ const submitLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await userLoginServ(loginForm);
+    console.log(res);
+
+    
+       dispatch(loginSuccess(res?.data?.user));
+         toast.success(
+      `Welcome back, ${res?.data?.user?.username}! 🍽️`
+    );
+
+  
+    // reset form
+    setLoginForm({ email: "", password: "" });
+
+       setTimeout(() => {
+      router.push("/");
+    }, 1200);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+ const submitSignup = async (e) => {
+  e.preventDefault();
+
+  try {
+    const res = await userRegisterServ({
+      ...signupForm,
+      role: "user"
+    });
+
+    console.log(res)
+     dispatch(loginSuccess(res?.data?.user));;
+
+      toast.success(
+      "Account created successfully! ✨"
+    );
+
+    setSignupForm({
+      name: "",
+      email: "",
+      password: "",
+    });
+
+    setTimeout(() => {
+      router.push("/");
+    }, 1200);
+
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   return (
     <div className="auth-root">
 
-      {/* ── Left decorative panel ── */}
       <div className="auth-left">
         {/* Blurred blobs */}
         <div className="auth-blob auth-blob-1" />

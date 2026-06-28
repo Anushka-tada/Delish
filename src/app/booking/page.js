@@ -106,6 +106,12 @@ import React from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import { bookTableServ } from "../../../services/booking.service";
+import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+import BookingSuccessModal from "../components/BookingSuccessModel";
 
 // ─────────────────────────────────────────────────────────────────────
 // Viewport configs
@@ -137,10 +143,73 @@ const staggerCard = {
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 }
 
-// ─────────────────────────────────────────────────────────────────────
-// Page
-// ─────────────────────────────────────────────────────────────────────
+
 const page = () => {
+
+  const router = useRouter();
+
+  const [showSuccess, setShowSuccess] = useState(false);
+const [bookedData, setBookedData] = useState(null);
+
+const { isAuthenticated } = useSelector(
+  (state) => state.auth
+);
+
+useEffect(() => {
+  if (!isAuthenticated) {
+    router.replace("/login");
+  }
+}, [isAuthenticated, router]);
+
+if (!isAuthenticated) {
+  return null;
+}
+
+  const [formData, setFormData] = useState({
+  name: "",
+  email: "",
+  phone: "",
+  date: "",
+  time: "",
+  guests: "",
+  message: "",
+});
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  setFormData((prev) => ({
+    ...prev,
+    [name]: value,
+  }));
+};
+
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+    try{
+      const response = await bookTableServ(formData);
+      console.log("booking successfull" , response);
+
+       setBookedData(formData); // popup ke liye details save karlo
+
+    setFormData({
+      name: "",
+      email: "",
+      phone: "",
+      date: "",
+      time: "",
+      guests: "",
+      message: "",
+    });
+
+    setShowSuccess(true);
+
+    }catch(err){
+      console.log(err)
+    }
+};
+
   return (
     <>
       <Navbar />
@@ -179,8 +248,7 @@ const page = () => {
           </div>
 
       {/* ════════════════════════════════════════════════
-          BOOKING FORM — slides up from below on load
-          Form markup is 100% original — zero changes
+          BOOKING FORM 
       ════════════════════════════════════════════════ */}
       <div className="booking-section d-flex align-items-center justify-content-center pb-5 pt-4">
         <motion.div
@@ -192,34 +260,67 @@ const page = () => {
         >
           <h3 className="text-white text-center">Make Reservation</h3>
 
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="row mt-4">
               <div className="col-4">
                 <label>Number of Guest*</label>
-                <input type="number" className="w-100 mt-2 mb-3"></input>
+                <input type="number" className="w-100 mt-2 mb-3"
+                  name="guests"
+        value={formData.guests}
+        onChange={handleChange}></input>
               </div>
               <div className="col-4">
                 <label>Select date*</label>
-                <input type="date" className="w-100 mt-2 mb-3"></input>
+               <input
+        type="date"
+        name="date"
+        value={formData.date}
+        onChange={handleChange}
+        className="w-100 mt-2 mb-3"
+      />
               </div>
               <div className="col-4">
                 <label>Select Time*</label>
-                <input type="time" className="w-100 mt-2 mb-3"></input>
+               <input
+        type="time"
+        name="time"
+        value={formData.time}
+        onChange={handleChange}
+        className="w-100 mt-2 mb-3"
+      />
               </div>
             </div>
 
             <div className="row mt-4">
               <div className="col-4">
                 <label>Your Name*</label>
-                <input type="text" className="w-100 mt-2 mb-3"></input>
+                <input
+        type="text"
+        name="name"
+        value={formData.name}
+        onChange={handleChange}
+        className="w-100 mt-2 mb-3"
+      />
               </div>
               <div className="col-4">
                 <label>Email Address*</label>
-                <input type="text" className="w-100 mt-2 mb-3"></input>
+                 <input
+        type="email"
+        name="email"
+        value={formData.email}
+        onChange={handleChange}
+        className="w-100 mt-2 mb-3"
+      />
               </div>
               <div className="col-4">
                 <label>Phone NUmber*</label>
-                <input type="text" className="w-100 mt-2 mb-3"></input>
+                <input
+        type="text"
+        name="phone"
+        value={formData.phone}
+        onChange={handleChange}
+        className="w-100 mt-2 mb-3"
+      />
               </div>
             </div>
 
@@ -227,14 +328,16 @@ const page = () => {
               <div className="col-12">
                 <label>Type Your Special Message</label>
                 <textarea
-                  rows={3}
-                  type="text"
-                  className="w-100 mt-2 mb-3"
-                ></textarea>
+        rows={3}
+        name="message"
+        value={formData.message}
+        onChange={handleChange}
+        className="w-100 mt-2 mb-3"
+      />
               </div>
             </div>
 
-            <button className="gap-3 px-5">
+            <button className="gap-3 px-5" type="submit">
               Book A Table <img src="/assets/white_arrow.png" alt="arrow" />
             </button>
           </form>
@@ -336,6 +439,12 @@ const page = () => {
       </div>
 
       <Footer />
+
+      <BookingSuccessModal
+  show={showSuccess}
+  onClose={() => setShowSuccess(false)}
+  bookingDetails={bookedData}
+/>
     </>
   );
 };

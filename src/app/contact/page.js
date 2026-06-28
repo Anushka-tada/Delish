@@ -39,17 +39,13 @@ import {
   IconSend,
   IconCheck,
 } from '@tabler/icons-react'
+import { contactServ } from '../../../services/support.service'
 
-// ─────────────────────────────────────────────────────────────────────
-// Viewport configs
-// ─────────────────────────────────────────────────────────────────────
+
 const VP      = { once: true, amount: 0.25 }
 const VP_SLOW = { once: true, amount: 0.35 }
 const VP_CARD = { once: true, amount: 0.2  }
 
-// ─────────────────────────────────────────────────────────────────────
-// Variants
-// ─────────────────────────────────────────────────────────────────────
 const fadeUp = {
   hidden:  { opacity: 0, y: 60 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
@@ -76,9 +72,9 @@ const staggerCard = {
     transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
 }
 
-// ─────────────────────────────────────────────────────────────────────
+
 // Data
-// ─────────────────────────────────────────────────────────────────────
+
 const infoCards = [
   {
     icon:  <IconMapPin size={28} stroke={1.6} />,
@@ -109,9 +105,7 @@ const faqs = [
   { q: 'Can I host a private event here?',      a: 'Yes! We have a dedicated private dining space for upto 60 guests. Reach out via the form below or call us directly.' },
 ]
 
-// ─────────────────────────────────────────────────────────────────────
 // FAQ Item — accordion open/close
-// ─────────────────────────────────────────────────────────────────────
 function FaqItem({ q, a, index }) {
   const [open, setOpen] = useState(false)
   return (
@@ -153,12 +147,16 @@ export default function Page() {
 
   const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = e => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
-    // hook up your API here
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 4000)
-    setForm({ name: '', email: '', phone: '', subject: '', message: '' })
+   try{
+    const res = await contactServ(form);
+    console.log("res" , res);
+     setForm({ name: '', email: '', phone: '', subject: '', message: '' })
+   }catch(err){
+    console.log(err);
+   }
+   
   }
 
   return (

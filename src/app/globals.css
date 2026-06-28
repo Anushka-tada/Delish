@@ -2278,3 +2278,763 @@ h2{
     left: 1.5rem;
   }
 }
+
+.booking-success-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 15, 15, 0.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+.booking-success-modal {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 40px 32px 32px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.booking-success-modal::before {
+  content: "";
+  position: absolute;
+  top: -60px;
+  left: -60px;
+  width: 160px;
+  height: 160px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.15), transparent 70%);
+  border-radius: 50%;
+  border: 1px solid #ff00001f;
+}
+
+.booking-success-modal::after {
+  content: "";
+  position: absolute;
+  bottom: -70px;
+  right: -70px;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(203, 58, 26, 0.1), transparent 70%);
+  border-radius: 50%;
+  border: 1px solid #ff00001f;
+}
+
+.booking-success-icon-wrap {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 18px;
+}
+
+.booking-success-icon {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  z-index: 2;
+}
+
+.booking-success-circle {
+  fill: none;
+  stroke: #22c55e;
+  stroke-width: 4;
+  stroke-linecap: round;
+}
+
+.booking-success-check {
+  fill: none;
+  stroke: #22c55e;
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.booking-success-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.25);
+  z-index: 1;
+}
+
+.booking-success-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+}
+
+.booking-success-text {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.booking-success-details {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.booking-success-chip {
+  background: #f0fdf4;
+  color: #16a34a;
+  border: 1px solid #bbf7d0;
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.booking-success-chip span {
+  font-weight: 700;
+}
+
+.booking-success-btn {
+  background: #cb3a1a;
+  color: #fff;
+  border: none;
+  padding: 12px 36px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+
+}
+
+.booking-success-btn:hover {
+  background: #a92e14;
+}
+
+@media (max-width: 480px) {
+  .booking-success-modal {
+    padding: 32px 20px 24px;
+  }
+}
+
+/* ================================================================
+   PROFILE PAGE + BOOKING DETAIL PAGE — profile.css
+   Import this in globals.css:  @import './profile.css';
+   or paste directly at end of globals.css
+   ================================================================ */
+
+/* ─────────────────────────────────────────────────────────────────
+   SHARED UTILITIES
+───────────────────────────────────────────────────────────────── */
+.profile-spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #f3f3f3;
+  border-top-color: var(--primary-color);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 12px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.profile-state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 12px;
+}
+
+.profile-state-text {
+  color: var(--para-color);
+  font-size: 15px;
+  margin: 0;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   PROFILE PAGE WRAPPER
+───────────────────────────────────────────────────────────────── */
+.profile-page-wrapper {
+  background-color: #f9f9f9;
+  min-height: 60vh;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   USER INFO CARD (Left)
+───────────────────────────────────────────────────────────────── */
+.profile-info-card {
+  background: white;
+  border-radius: 16px;
+  padding: 36px 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: sticky;
+  top: 90px;
+}
+
+/* Avatar */
+.profile-avatar-wrap {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  margin-bottom: 16px;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+}
+
+.profile-avatar-ring {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px dashed #CB3A1A60;
+  animation: rotate-ring 12s linear infinite;
+}
+
+@keyframes rotate-ring {
+  to { transform: rotate(360deg); }
+}
+
+.profile-name {
+  margin: 0 0 4px;
+  color: var(--secondary-color);
+  font-size: 18px !important;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.profile-email-tag {
+  color: var(--para-color);
+  font-size: 13px;
+  margin: 0;
+}
+
+.profile-card-divider {
+  width: 100%;
+  height: 1px;
+  background: #f0f0f0;
+  margin: 22px 0;
+}
+
+/* Detail rows inside card */
+.profile-detail-rows {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+
+.profile-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.profile-detail-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  background: #fff0ed;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profile-detail-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--para-color);
+  margin: 0 0 2px;
+}
+
+.profile-detail-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin: 0;
+  word-break: break-all;
+}
+
+/* Logout button */
+.profile-logout-btn {
+  margin-top: 28px;
+  width: 100%;
+  background: transparent;
+  border: 1.5px solid #e5e5e5;
+  border-radius: 8px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--secondary-color);
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+
+.profile-logout-btn:hover {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  background: #fff5f3;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   BOOKINGS CARD (Right)
+───────────────────────────────────────────────────────────────── */
+.profile-bookings-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.profile-bookings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.profile-section-title {
+  margin: 0;
+  color: var(--secondary-color);
+  font-size: 17px !important;
+  letter-spacing: 0.03em;
+}
+
+.profile-new-booking-btn {
+  background: var(--primary-color);
+  color: white;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  display: inline-block;
+}
+
+.profile-new-booking-btn:hover {
+  opacity: 0.88;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* Table */
+.profile-table-wrap {
+  overflow-x: auto;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+}
+
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.profile-table thead tr {
+  background: #fafafa;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.profile-table th {
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--para-color);
+  font-weight: 600;
+}
+
+.profile-table td {
+  padding: 14px 16px;
+  color: var(--secondary-color);
+  font-weight: 500;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.profile-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.profile-table tbody tr:hover {
+  background: #fdfafa;
+}
+
+.profile-td-num {
+  color: var(--para-color) !important;
+  font-weight: 400 !important;
+  font-size: 13px;
+}
+
+.profile-td-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* View button */
+.profile-view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #fff0ed;
+  color: var(--primary-color);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.profile-view-btn:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* ================================================================
+   BOOKING DETAIL PAGE
+   ================================================================ */
+
+.bd-page-wrapper {
+  background-color: #f9f9f9;
+  min-height: 60vh;
+}
+
+/* Back link */
+.bd-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--para-color);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  margin-bottom: 28px;
+  transition: color 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bd-back-link:hover {
+  color: var(--primary-color);
+}
+
+/* State box */
+.bd-state-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  gap: 14px;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   STATUS CARD (Left)
+───────────────────────────────────────────────────────────────── */
+.bd-status-card {
+  background: white;
+  border-radius: 16px;
+  padding: 36px 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #f0f0f0;
+  position: sticky;
+  top: 90px;
+}
+
+.bd-status-icon-wrap {
+  position: relative;
+  margin-bottom: 18px;
+}
+
+.bd-status-icon {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bd-booking-id {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--para-color);
+  margin: 0 0 4px;
+}
+
+.bd-booking-id-value {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin: 0;
+  font-family: monospace;
+  letter-spacing: 0.08em;
+}
+
+.bd-status-divider {
+  width: 100%;
+  height: 1px;
+  background: #f0f0f0;
+  margin: 20px 0;
+}
+
+/* Status pill */
+.bd-status-pill {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.bd-status-pill-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+  margin: 0 0 2px;
+}
+
+.bd-status-pill-value {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bd-status-desc {
+  font-size: 13px;
+  color: var(--para-color);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.bd-booked-on-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--para-color);
+  margin: 0 0 4px;
+}
+
+.bd-booked-on-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin: 0;
+}
+
+.bd-rebook-btn {
+  margin-top: 22px;
+  width: 100%;
+  background: var(--primary-color);
+  color: white;
+  padding: 11px 18px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+  display: block;
+}
+
+.bd-rebook-btn:hover {
+  opacity: 0.88;
+  color: white;
+  transform: translateY(-1px);
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   DETAILS CARD (Right)
+───────────────────────────────────────────────────────────────── */
+.bd-details-card {
+  background: white;
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+}
+
+.bd-card-title {
+  margin: 0 0 8px;
+  color: var(--secondary-color);
+  font-size: 17px !important;
+  letter-spacing: 0.03em;
+}
+
+.bd-card-title-bar {
+  width: 40px;
+  height: 3px;
+  background: var(--primary-color);
+  border-radius: 2px;
+  margin-bottom: 28px;
+}
+
+.bd-section-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--para-color);
+  font-weight: 600;
+  margin: 0 0 16px;
+}
+
+.bd-section-divider {
+  width: 100%;
+  height: 1px;
+  background: #f0f0f0;
+  margin: 24px 0;
+}
+
+/* Detail grid */
+.bd-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 576px) {
+  .bd-detail-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Detail row */
+.bd-detail-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: #fafafa;
+  padding: 14px;
+  border-radius: 10px;
+  border: 1px solid #f0f0f0;
+}
+
+.bd-detail-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: #fff0ed;
+  color: var(--primary-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bd-detail-text {
+  flex: 1;
+}
+
+.bd-detail-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--para-color);
+  margin: 0 0 4px;
+}
+
+.bd-detail-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--secondary-color);
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Message box */
+.bd-message-box {
+  background: #fafafa;
+  border: 1px solid #f0f0f0;
+  border-left: 3px solid var(--primary-color);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.bd-message-text {
+  font-size: 14px;
+  color: var(--para-color);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────────────────────────────
+   RESPONSIVE TWEAKS
+───────────────────────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .profile-info-card,
+  .bd-status-card {
+    position: static;
+  }
+
+  .profile-table th,
+  .profile-table td {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+
+  .bd-details-card,
+  .profile-bookings-card {
+    padding: 24px 18px;
+  }
+}
