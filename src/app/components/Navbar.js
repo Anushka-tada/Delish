@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { IconUser } from "@tabler/icons-react";
@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const router = useRouter();
+  const offcanvasRef = useRef(null);
+  const offcanvasInstanceRef = useRef(null);
 
   const navArr = [
     { name: "Home",     link: "/"         },
@@ -24,7 +26,28 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const { isAuthenticated, user } = useSelector((state) => state.auth)
+  // Bootstrap ka Offcanvas JS instance ek baar hi banayenge, taaki hum khud control kar sakein ki kab close ho
+  useEffect(() => {
+    let bootstrap;
+    if (typeof window !== "undefined") {
+      bootstrap = require("bootstrap");
+      if (offcanvasRef.current) {
+        offcanvasInstanceRef.current = new bootstrap.Offcanvas(offcanvasRef.current);
+      }
+    }
+  }, []);
+
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+
+  // Navigation + close offcanvas ko properly sequence karne ke liye ye function banaya
+  const handleMobileNavigate = (link) => {
+    router.push(link);
+    // Navigation trigger hone ke turant baad offcanvas close karo,
+    // taaki Bootstrap ka dismiss beech me navigation ko cancel na kare
+    setTimeout(() => {
+      offcanvasInstanceRef.current?.hide();
+    }, 100);
+  };
 
   return (
     <>
@@ -73,23 +96,24 @@ const Navbar = () => {
           <div className="d-none d-lg-flex align-items-center gap-3">
 
             {/* Login icon button */}
-          <button
-  className="navBtn px-3 d-flex justify-content-center gap-2 align-items-center" style={{background:"transparent"}} 
-  onClick={() =>
-    router.push(isAuthenticated ? "/profile" : "/login")
-  }
-  aria-label=""
->
-  <IconUser size={18} stroke={1.8} />
-  <span>
-    {isAuthenticated ? "PROFILE" : "LOGIN"}
-  </span>
-</button>
+            <button
+              className="navBtn px-3 d-flex justify-content-center gap-2 align-items-center"
+              style={{ background: "transparent" }}
+              onClick={() =>
+                router.push(isAuthenticated ? "/profile" : "/login")
+              }
+              aria-label=""
+            >
+              <IconUser size={18} stroke={1.8} />
+              <span>
+                {isAuthenticated ? "PROFILE" : "LOGIN"}
+              </span>
+            </button>
 
             {/* Book a Table */}
             <div
               className="navBtn px-3 d-flex justify-content-center gap-3 align-items-center"
-              style={{ cursor: "pointer" , backgroundColor:"red"}}
+              style={{ cursor: "pointer", backgroundColor: "red" }}
               onClick={() => router.push("/booking")}
             >
               <p className="mb-0">Book A Table</p>
@@ -102,6 +126,7 @@ const Navbar = () => {
 
       {/* ── Offcanvas Mobile Menu ───────────────────────── */}
       <div
+        ref={offcanvasRef}
         className="offcanvas offcanvas-end"
         style={{ zIndex: "99" }}
         tabIndex="-1"
@@ -113,7 +138,7 @@ const Navbar = () => {
           <button
             type="button"
             className="btn-close"
-            data-bs-dismiss="offcanvas"
+            onClick={() => offcanvasInstanceRef.current?.hide()}
             aria-label="Close"
           />
         </div>
@@ -121,51 +146,49 @@ const Navbar = () => {
           <ul className="navbar-nav">
             {navArr.map((v, i) => (
               <li key={i} className="nav-item">
-                <Link
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleMobileNavigate(v.link);
+                  }}
                   href={v.link}
                   className="nav-link"
-                  data-bs-dismiss="offcanvas"
                   style={{
                     textDecoration: "none",
                     color: "var(--secondary-color)",
                     fontWeight: 500,
                     fontSize: "18px",
+                    cursor: "pointer",
                   }}
                 >
                   {v.name}
-                </Link>
+                </a>
               </li>
             ))}
 
             {/* Login in mobile menu */}
             <li className="nav-item mt-2">
-              {/* <Link
-                href="/login"
-                className="nav-link d-flex align-items-center gap-2"
-                data-bs-dismiss="offcanvas"
-                style={{
-                  textDecoration: "none",
-                  color: "var(--primary-color)",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                }}
+              <button
+                className="navBtn px-3 d-flex justify-content-center gap-2 align-items-center"
+                style={{ background: "transparent" }}
+                onClick={() =>
+                  handleMobileNavigate(isAuthenticated ? "/profile" : "/login")
+                }
+                aria-label=""
               >
                 <IconUser size={18} stroke={1.8} />
-              {
-  isAuthenticated ? (
-  <button>Profile</button>
-  ) : (
-    <button>Login</button>
-  )}
-              </Link> */}
+                <span>
+                  {isAuthenticated ? "PROFILE" : "LOGIN"}
+                </span>
+              </button>
             </li>
 
-            <li className="mt-3">
+            <li className="nav-item mt-2">
+              {/* Book a Table */}
               <div
                 className="navBtn px-3 d-flex justify-content-center gap-3 align-items-center"
-                data-bs-dismiss="offcanvas"
-                onClick={() => router.push("/booking")}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", backgroundColor: "red" }}
+                onClick={() => handleMobileNavigate("/booking")}
               >
                 <p className="mb-0">Book A Table</p>
                 <img src="/assets/white_arrow.png" alt="arrow" />
